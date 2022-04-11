@@ -1,5 +1,6 @@
 import pickle
 import os
+import pandas as pd
 
 def load_model():
     print(os.path.abspath(__file__))
@@ -11,7 +12,7 @@ def load_model():
 
 def Predict(value):
     model = load_model()
-    
-    y_pred = model.predict(value)
-    return y_pred
+    data = [value]
+    pred = model.predict(data)
+    return pred
     

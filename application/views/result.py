@@ -5,21 +5,25 @@ result = Blueprint('result',__name__)
 
 @result.route('/result',methods=['POST','GET'])
 def index():
-    req=request.form
+    if(request.method=='POST'):
+        req=request.form
+        print("req:",req)
+    else:
+        print("Error")
+    
     data=list(req.values())
-    try:
-        ans=pred.Predict(data)
-        if(int(ans)==6):
-            re='1등급 입니다.'
-        elif(int(ans)==5):
-            re='2등급 입니다.'
-        elif(int(ans)==4):
-            re='3등급 입니다.'
-        elif(int(ans)==3):
-            re='4등급 입니다.'
-        else:
-            re='5등급 입니다.'
+    print("Data:",data)
+    # try:
+    result=pred.Predict(data)
+    if(int(result)==8 or int(result)==7):
+        re='1등급 입니다.'
+    elif(int(result)==6 or int(result)==5):
+        re='2등급 입니다.'
+    elif(int(result)==4 or int(result)==3):
+        re='3등급 입니다.'
+    else:
+        re='결과를 찾을 수 없음'
 
-    except ValueError:
-            re='값을 다시 입력 해주세요.'
+    # except Exception as e:
+    #         print("Error:",e)
     return render_template("result.html",ans=re), 200
