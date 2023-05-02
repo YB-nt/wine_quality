@@ -1,6 +1,6 @@
 # wine_quality
 
-<br><br>
+<br>
 ### 프로젝트 과정
 kaggle dataset (csv)-> google Drive(gdown)-> model(RandomForest) -> Flask
                                           -> database(sqlite) 
